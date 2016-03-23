@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户注册</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+</head>
+<style type="text/css">
+	.register-back{min-height:500px; position:relative;}
+	.register{border:1px solid #ddd;width:400px;height:400px; position:absolute; left:50%; top:50%;  transform:translate(-50%,-50%);}
+	.register-head{background:#ccc; padding:8px 20px; position:relative; font-size:20px;}
+	.register ul{margin:50px;}
+	.sr{width:300px; height:50px;}
+	.sr input{width:250px; padding:10px 25px; font-size:15px;}
+	.register-sub{font-size:15px; background-color:green; text-align:center; line-height:40px; height:40px; margin:0px 48px;}
+	.register-log{width:60px; height:40px; background-color:blue; text-align:center; line-height:40px; margin-left:292px; margin-top:10px;}
+</style>
+<body >
+	<div class="register-back">
+	<%- message %>
+		<div class="register">
+			<div class="register-head">用户注册</div>
+			<form action="#" role="form" method="post">
+				<ul>
+					<li class="sr"><input id="username" type="text" name="username" placeholder="用户名"></li>
+					<li class="sr"><input id="password" type="text" name="password" placeholder="密码"></li>
+					<li class="sr"><input type="text" name="confirmpwd" placeholder="确认密码"></li>
+				</ul>
+			</form>
+			<div class="register-sub" onclick="regi()">注册</div>
+			<div class="register-log" onclick="denglu()">登陆</div>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript" src="javascripts/jquery-2.2.2.min.js"></script>
+<script type="text/javascript">
+	function regi(){
+		//通过serialize()方法进行序列化表单值，创建文本字符串
+		// var data = $("form").serialize();
+		//例如："username=张三&password=12345"
+		var name = $('#username').val(),
+        password = $('#password').val();
+        data = { "uname": name, "upwd":password};
+		$.ajax({
+			url:'/register',
+			type:'POST',
+			data:data,
+			success:function (data, status){
+				if(status == 'success'){
+					location.href='/login';
+				}
+			},
+			error:function (res, err){
+				location.href='/';
+			}
+		});
+	}
+	function denglu(){
+		location.href='login';
+	}
+</script>
+</html>

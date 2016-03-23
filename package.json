@@ -1,0 +1,15 @@
+//版本信息，依赖包
+{
+  "name": "shop",
+  "version": "0.0.0",
+  "main": "app.js",
+  "dependencies": {
+  "express": "~4.13.4",
+  "express-session": "~1.13.0",
+  "body-parser": "~1.15.0",
+  "multer": "~1.1.0",
+  "path": "~0.12.7",
+  "mongoose": "~4.4.7",
+  "ejs": "~2.4.1"
+  }
+}

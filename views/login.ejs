@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>用户登陆</title>
+	<link rel="stylesheet" type="text/css" href="/stylesheets/reset.css">
+</head>
+
+<style type="text/css">
+	.register-back{min-height:500px; position:relative;}
+	.register{border:1px solid #ddd;width:400px;height:400px; position:absolute; left:50%; top:50%;  transform:translate(-50%,-50%);}
+	.register-head{background:#ccc; padding:8px 20px; position:relative; font-size:20px;}
+	.register ul{margin:50px;}
+	.sr{width:300px; height:50px;}
+	.sr input{width:250px; padding:10px 25px; font-size:15px;}
+	.register-sub{font-size:15px; background-color:green; text-align:center; line-height:40px; height:40px; margin:0px 48px;}
+	.register-log{width:60px; height:40px; background-color:blue; text-align:center; line-height:40px; margin-left:292px; margin-top:10px;}
+</style>
+<script type="text/javascript" src="javascripts/jquery-2.2.2.min.js"></script>
+<script type="text/javascript">
+	function login(){
+		var username = $('#username').val(),
+        password = $('#password').val();
+        data = { "uname": username, "upwd":password};
+		$.ajax({
+			url:'/login',
+			type:'POST',
+			data:data,
+			success:function (data, status){
+				if(status == 'success'){
+					location.href='/home';
+				}
+			},
+			error:function (res, err){
+				location.href='/login';
+			}
+		});
+	}
+	function zhuce(){
+		location.href='/register';
+	}
+</script>
+<body >
+	<div class="register-back">
+	
+		<div class="register">
+		<%- message %>
+			<div class="register-head">用户登陆</div>
+			<form action="#" role="form" method="post">
+				<ul>
+					<li class="sr"><input id="username" type="text" name="username" placeholder="用户名"></li>
+					<li class="sr"><input id="password" type="text" name="password" placeholder="密码"></li>
+				</ul>
+			</form>
+			<div class="register-sub" onclick="login()">登陆</div>
+			<div class="register-log" onclick="zhuce()">注册</div>
+		</div>
+	</div>
+	
+</body>
+
+</html>
